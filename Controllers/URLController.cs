@@ -37,12 +37,21 @@ namespace APKUrl.Controllers
 
             var seleniumURL = _configuration["SeleniumURL"];
 
-            if (!string.IsNullOrEmpty(_configuration["AUTO302_HOST"]))
+            if (!string.IsNullOrEmpty(seleniumURL))
             {
-                seleniumURL = _configuration["AUTO302_HOST"];
+                if (!seleniumURL.StartsWith("http"))
+                {
+                    seleniumURL = "http://" + _configuration[seleniumURL];
+                }
+            }
+            else
+            {
+                _logger.LogError("please set environment:SeleniumURL to set remote url or the server host environment name");
+                return "please set environment:SeleniumURL to set remote url or the server host environment name";
             }
 
-            using (RemoteWebDriver driver = new RemoteWebDriver(new Uri("http://"+seleniumURL), firefoxOptions))
+
+            using (RemoteWebDriver driver = new RemoteWebDriver(new Uri(seleniumURL), firefoxOptions))
             {
 
 
