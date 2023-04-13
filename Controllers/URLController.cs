@@ -42,7 +42,7 @@ namespace APKUrl.Controllers
                 seleniumURL = _configuration["AUTO302_HOST"];
             }
 
-            using (RemoteWebDriver driver = new RemoteWebDriver(new Uri(seleniumURL), firefoxOptions))
+            using (RemoteWebDriver driver = new RemoteWebDriver(new Uri("http://"+seleniumURL), firefoxOptions))
             {
 
 
