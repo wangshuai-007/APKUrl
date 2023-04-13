@@ -1,4 +1,10 @@
+using Serilog;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((ctx, lc) => lc
+    .WriteTo.Console()
+    .WriteTo.Seq(builder.Configuration["SeqUrl"], apiKey: "5g7gyomAMPeZHmQqBPj7"));
 
 // Add services to the container.
 
