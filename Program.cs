@@ -25,4 +25,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+
+app.Run(builder.Configuration["PORT"]);
