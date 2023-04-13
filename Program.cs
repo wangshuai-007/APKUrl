@@ -26,4 +26,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 
-app.Run(builder.Configuration["PORT"]);
+app.Run("http://*:" + builder.Configuration["PORT"]);
