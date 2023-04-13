@@ -34,7 +34,15 @@ namespace APKUrl.Controllers
             if (string.IsNullOrEmpty(proxy))
                 firefoxOptions.Proxy = new Proxy() {HttpProxy = proxy};
             firefoxOptions.AddArgument("--disable-web-security");
-            using (RemoteWebDriver driver = new RemoteWebDriver(new Uri(_configuration["SeleniumURL"]), firefoxOptions))
+
+            var seleniumURL = _configuration["SeleniumURL"];
+
+            if (!string.IsNullOrEmpty(_configuration["AUTO302_HOST"]))
+            {
+                seleniumURL = _configuration["AUTO302_HOST"];
+            }
+
+            using (RemoteWebDriver driver = new RemoteWebDriver(new Uri(seleniumURL), firefoxOptions))
             {
 
 
