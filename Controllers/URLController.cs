@@ -36,6 +36,10 @@ namespace APKUrl.Controllers
             firefoxOptions.AddArgument("--disable-web-security");
 
             var seleniumURL = _configuration["SeleniumURL"];
+            var waitTimeOut = 10;
+            var timeOutStr = _configuration["WaitTimeOut"];
+            if (string.IsNullOrEmpty(timeOutStr)) int.TryParse(timeOutStr, out waitTimeOut);
+
 
             if (!string.IsNullOrEmpty(seleniumURL))
             {
@@ -75,7 +79,7 @@ namespace APKUrl.Controllers
 
                     driver.ExecuteScript(setStr);
 
-                    WebDriverWait waitTitle = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                    WebDriverWait waitTitle = new WebDriverWait(driver, TimeSpan.FromSeconds(waitTimeOut));
                    waitTitle.Until(e => e.Title != "百度一下，你就知道");
 
                     _logger.LogInformation($"url is :{driver.Title}");
