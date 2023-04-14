@@ -50,7 +50,7 @@ namespace APKUrl.Controllers
                 return "please set environment:SeleniumURL to set remote url or the server host environment name";
             }
 
-
+            _logger.LogInformation("the url is :{seleniumURL}", seleniumURL);
             using (RemoteWebDriver driver = new RemoteWebDriver(new Uri(seleniumURL), firefoxOptions))
             {
 
