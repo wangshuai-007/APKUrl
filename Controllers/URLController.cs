@@ -38,7 +38,7 @@ namespace APKUrl.Controllers
             var seleniumURL = _configuration["SeleniumURL"];
             var waitTimeOut = 10;
             var timeOutStr = _configuration["WaitTimeOut"];
-            if (string.IsNullOrEmpty(timeOutStr)) int.TryParse(timeOutStr, out waitTimeOut);
+            if (!string.IsNullOrEmpty(timeOutStr)) int.TryParse(timeOutStr, out waitTimeOut);
 
 
             if (!string.IsNullOrEmpty(seleniumURL))
